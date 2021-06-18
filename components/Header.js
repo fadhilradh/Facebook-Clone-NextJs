@@ -18,8 +18,8 @@ import HeaderIcon from "./HeaderIcon";
 function Header() {
   return (
     <div
-      className="sticky top-0 z-50 bg-white flex items-center 
-    w-full justify-between px-3 lg:px-5 pt-1 shadow-md"
+      className="sticky top-0 z-50 bg-white flex w-full items-center 
+    justify-between px-3 lg:px-5 pt-1 shadow-md"
     >
       <div className="flex flex-row items-center">
         <Image
@@ -40,7 +40,7 @@ function Header() {
       </div>
 
       {/* Center */}
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 ">
         <HeaderIcon Icon={HomeIcon} selected />
         <HeaderIcon Icon={FlagIcon} />
         <HeaderIcon Icon={PlayIcon} />
@@ -49,18 +49,19 @@ function Header() {
       </div>
 
       {/* Right */}
-      <div>
-        <div className="flex items-center sm:space-x-2">
+      <div className="flex justify-end items-center sm:space-x-2">
+        <div className="flex items-center justify-end mr-3">
           <Image width={50} height={50} src="/logo.png" alt="profilepic" />
           <p className="hidden font-semibold sm:inline-flex whitespace-nowrap">
             Fadhil Radhian
           </p>
-          <div className="sm:space-x-2 pl-6">
-            <BellIcon className="icon" />
-            <ChatIcon className="icon" />
-            <ChevronDownIcon className="icon" />
-            <ViewGridIcon className="icon" />
-          </div>
+        </div>
+
+        <div className="flex justify-end sm:space-x-2 ">
+          <BellIcon className="icon" />
+          <ChatIcon className="icon" />
+          <ChevronDownIcon className="icon" />
+          <ViewGridIcon className="icon" />
         </div>
       </div>
     </div>
