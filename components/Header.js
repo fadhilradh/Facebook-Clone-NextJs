@@ -29,7 +29,7 @@ function Header() {
           height={50}
           layout="intrinsic"
         />
-        <div className="hidden md:flex mb-1 px-5 py-3 bg-gray-100 h-10 items-center rounded-full">
+        <div className="hidden md:w-3/4 md:flex mb-1 px-5 py-3 bg-gray-100 h-10 items-center rounded-full">
           <SearchIcon className="h-5 text-gray-800 mr-2" />
           <input
             type="text"
@@ -40,7 +40,7 @@ function Header() {
       </div>
 
       {/* Center */}
-      <div className="flex space-x-6 sm:space-x-2 ">
+      <div className="flex space-x-4 sm:space-x-2 ">
         <HeaderIcon Icon={HomeIcon} selected />
         <HeaderIcon Icon={FlagIcon} />
         <HeaderIcon Icon={PlayIcon} />
@@ -50,8 +50,8 @@ function Header() {
 
       {/* Right */}
       <div className="flex justify-end items-center sm:space-x-2">
-        <div className="flex items-center justify-end mr-3">
-          <Image width={50} height={50} src="/logo.png" alt="profilepic" />
+        <div className="flex items-center justify-end sm:mr-3">
+          <Image width={40} height={40} src="/logo.png" alt="profilepic" />
           <p className="hidden font-semibold sm:inline-flex whitespace-nowrap">
             Fadhil Radhian
           </p>

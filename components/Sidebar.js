@@ -13,7 +13,7 @@ import {
 
 function Sidebar() {
   return (
-    <div className="p-2 md:w-1/4 max-w-[600px] xl:min-w-[300px]">
+    <div className="mt-4 ml-3 sm:ml-0 sm:p-2 md:w-1/4 max-w-[600px] xl:min-w-[300px]">
       <SidebarRow Icon={UsersIcon} title="Friends" />
       <SidebarRow Icon={UserGroupIcon} title="Groups" />
       <SidebarRow Icon={ShoppingBagIcon} title="Marketplace" />
