@@ -19,10 +19,6 @@ const contacts = [
     name: "Bill Gates",
     src: "https://links.papareact.com/zvy",
   },
-  {
-    name: "Sonny Sangha",
-    src: "https://links.papareact.com/l4v",
-  },
 ];
 
 function Widgets() {
@@ -38,7 +34,7 @@ function Widgets() {
       </div>
 
       {contacts.map((contact) => (
-        <Contact key={contact.src} name={name} src={contact.src} />
+        <Contact key={contact.src} name={contact.name} src={contact.src} />
       ))}
     </div>
   );

@@ -1,7 +1,7 @@
 function HeaderIcon({ Icon, selected }) {
   return (
     <section
-      className={` cursor-pointer border-b-[3px] group ${
+      className={`cursor-pointer border-b-[3px] group ${
         selected
           ? "border-blue-500 text-blue-600 "
           : "border-transparent text-gray-500"
@@ -12,7 +12,7 @@ function HeaderIcon({ Icon, selected }) {
           selected ? " hover:bg-transparent" : " active:border-blue-600"
         }`}
       >
-        <Icon className="h-6 sm:h-8 group-hover:text-blue-600" />
+        <Icon className="h-6 sm:h-6 md:h-8 group-hover:text-blue-600" />
       </div>
     </section>
   );

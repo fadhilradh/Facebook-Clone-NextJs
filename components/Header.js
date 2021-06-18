@@ -27,7 +27,7 @@ function Header() {
           src="/logo.png"
           width={50}
           height={50}
-          layout="fixed"
+          layout="intrinsic"
         />
         <div className="hidden md:flex mb-1 px-5 py-3 bg-gray-100 h-10 items-center rounded-full">
           <SearchIcon className="h-5 text-gray-800 mr-2" />
@@ -40,7 +40,7 @@ function Header() {
       </div>
 
       {/* Center */}
-      <div className="flex space-x-2 ">
+      <div className="flex space-x-6 sm:space-x-2 ">
         <HeaderIcon Icon={HomeIcon} selected />
         <HeaderIcon Icon={FlagIcon} />
         <HeaderIcon Icon={PlayIcon} />
