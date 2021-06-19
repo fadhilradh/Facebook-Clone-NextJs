@@ -4,8 +4,11 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/Feed";
 import Widgets from "../components/Widgets";
+import { getSession } from "next-auth/client";
+import Login from "./login";
 
-export default function Home() {
+export default function Home({ session }) {
+  if (!session) return <Login />;
   return (
     <div className="h-screen bg-gray-100 overflow-hidden">
       <Head>
@@ -22,4 +25,14 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  // Get the user
+  const session = await getSession(context);
+  return {
+    props: {
+      session,
+    },
+  };
 }
