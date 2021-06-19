@@ -14,12 +14,13 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
 import HeaderIcon from "./HeaderIcon";
+import { signOut } from "next-auth/client";
 
-function Header() {
+function Header({ session }) {
   return (
     <div
       className="sticky top-0 z-50 bg-white flex w-full items-center 
-    justify-between px-3 lg:px-5 pt-1 shadow-md"
+     px-3 lg:px-5 pt-1 shadow-md"
     >
       <div className="flex flex-row items-center">
         <Image
@@ -40,7 +41,7 @@ function Header() {
       </div>
 
       {/* Center */}
-      <div className="flex space-x-4 sm:space-x-2 ">
+      <div className="flex flex-grow justify-center space-x-4 sm:space-x-2 ">
         <HeaderIcon Icon={HomeIcon} selected />
         <HeaderIcon Icon={FlagIcon} />
         <HeaderIcon Icon={PlayIcon} />
@@ -50,18 +51,31 @@ function Header() {
 
       {/* Right */}
       <div className="flex justify-end items-center sm:space-x-2">
-        <div className="flex items-center justify-end sm:mr-3">
-          <Image width={40} height={40} src="/logo.png" alt="profilepic" />
-          <p className="hidden font-semibold sm:inline-flex whitespace-nowrap">
-            Fadhil Radhian
+        <div className="flex items-center sm:mr-3">
+          <Image
+            width={40}
+            height={40}
+            src={session.user.image}
+            alt="profilepic"
+            className="rounded-full cursor-pointer "
+            onClick={signOut}
+          />
+          <p className="hidden ml-3 font-semibold sm:inline-flex whitespace-nowrap">
+            {session.user.name}
           </p>
         </div>
 
-        <div className="flex justify-end sm:space-x-2 ">
+        <div className="flex sm:space-x-2 md:w-72 justify-between ">
           <BellIcon className="icon" />
           <ChatIcon className="icon" />
           <ChevronDownIcon className="icon" />
           <ViewGridIcon className="icon" />
+          <button
+            onClick={signOut}
+            className="hidden sm:inline-flex px-2 bg-blue-500 text-white rounded-lg py-0 sm:py-2 ml-3 hover:bg-blue-600 focus:outline-none"
+          >
+            Log Out
+          </button>
         </div>
       </div>
     </div>

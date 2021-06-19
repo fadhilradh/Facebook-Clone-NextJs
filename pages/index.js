@@ -17,7 +17,7 @@ export default function Home({ session }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header session={session} />
       <main className="flex">
         <Sidebar />
         <Feed />
