@@ -18,7 +18,7 @@ function Login() {
       </div>
       <div
         className="flex flex-col items-center justify-center w-5/6 sm:w-3/4 
-      md:w-72 h-36 bg-white shadow-md rounded-xl space-y-3 border border-gray-100"
+      md:w-96 h-64 bg-white shadow-md rounded-xl space-y-3 border border-gray-100"
       >
         <p className="text-blue-500 text-lg ">Login with Facebook Account</p>
         <button
@@ -27,6 +27,13 @@ function Login() {
         font-semibold text-xl h-15 focus:outline-none transition duration-150 ease-in transform active:scale-95 "
         >
           Log In
+        </button>
+        <p>or</p>
+        <button
+          className="w-5/6 rounded-md px-6 py-3 bg-[#42B72B] hover:bg-[#369323] text-white 
+        font-semibold text-xl h-15 focus:outline-none transition duration-150 ease-in transform active:scale-95 "
+        >
+          Sign In Without Account
         </button>
       </div>
     </section>
