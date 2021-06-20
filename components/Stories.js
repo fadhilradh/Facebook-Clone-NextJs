@@ -22,9 +22,9 @@ const stories = [
     profile: "https://links.papareact.com/zvy",
   },
   {
-    name: "Sonny Sangha",
-    src: "https://links.papareact.com/zof",
-    profile: "https://links.papareact.com/l4v",
+    name: "Fadhil Radhian",
+    src: "/1.jpeg",
+    profile: "/fadh.jpeg",
   },
 ];
 
