@@ -2,43 +2,78 @@ import Image from "next/image";
 import { EmojiHappyIcon } from "@heroicons/react/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import { useRef, useState } from "react";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 import firebase from "firebase";
 
 function InputBox({ session }) {
+  // const [session] = useSession();
   const inputRef = useRef(null);
+  const [imageToPost, setImageToPost] = useState(null);
+  const filepickerRef = useRef(null);
 
-  const sendPost = (el) => {
-    el.preventDefault();
-    console.log("inputValue");
+  const sendPost = (e) => {
+    e.preventDefault();
+
     if (!inputRef.current.value) return;
-    db.collection("posts").add({
-      message: inputRef.current.value,
-      name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    console.log("bb");
+
+    db.collection("posts")
+      .add({
+        message: inputRef.current.value,
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then((doc) => {
+        if (imageToPost) {
+          const uploadTask = storage
+            .ref(`posts/${doc.id}`)
+            .putString(imageToPost, "data_url");
+
+          removeImage();
+
+          uploadTask.on(
+            "state_changed",
+            null,
+            (error) => {
+              // ERROR function
+              console.log(error);
+            },
+            () => {
+              // COMPLETE function
+              storage
+                .ref("posts")
+                .child(doc.id)
+                .getDownloadURL()
+                .then((url) => {
+                  db.collection("posts").doc(doc.id).set(
+                    {
+                      postImage: url,
+                    },
+                    { merge: true }
+                  );
+                });
+            }
+          );
+        }
+      });
+
     inputRef.current.value = "";
   };
 
-  const [pickedImage, setPickedImage] = useState(null);
-  const filePickerRef = useRef(null);
-
-  const addFileToPost = (event) => {
+  const addImageToPost = (e) => {
     const reader = new FileReader();
-    if (event.target.files[0]) {
-      reader.readAsDataURL(event.target.files[0]);
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
     }
 
     reader.onload = (readerEvent) => {
-      setPickedImage(readerEvent.target.result);
+      setImageToPost(readerEvent.target.result);
     };
   };
 
   const removeImage = () => {
-    setPickedImage(null);
+    setImageToPost(null);
   };
 
   return (
@@ -62,12 +97,15 @@ function InputBox({ session }) {
           <button type="submit" className="hidden" onClick={sendPost}></button>
         </form>
 
-        {pickedImage && (
-          <div className="flex flex-col items-center justify-center ">
+        {imageToPost && (
+          <div
+            className="flex flex-col items-center justify-center filter 
+          hover:brightness-110 transition duration-150 transform hover:scale-105 cursor-pointer"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt="picked image"
-              src={pickedImage}
+              src={imageToPost}
               className="h-10 object-contain hover:brightness-105"
             />
             <p
@@ -82,22 +120,26 @@ function InputBox({ session }) {
 
       <div className="flex flex-1 justify-evenly items-center mt-4">
         <div className="feedicon">
-          <VideoCameraIcon className="h-8 text-red-500" />
-          <p className="text-xs sm:text-sm">Live Video</p>
+          <VideoCameraIcon className="h-8 text-gray-500" />
+          <p className="hidden md:inline-flex text-xs sm:text-sm">Live Video</p>
         </div>
-        <div onClick={() => filePickerRef.current.click()} className="feedicon">
+        <div onClick={() => filepickerRef.current.click()} className="feedicon">
           <CameraIcon className="h-8 text-green-500" />
-          <p className="text-xs sm:text-sm">Photo / Video</p>
+          <p className="hidden md:inline-flex text-xs sm:text-sm">
+            Photo / Video
+          </p>
           <input
             hidden
-            ref={filePickerRef}
+            ref={filepickerRef}
             type="file"
-            onChange={addFileToPost}
+            onChange={addImageToPost}
           />
         </div>
         <div className="feedicon">
-          <EmojiHappyIcon className="h-8 text-yellow-500" />
-          <p className="text-xs sm:text-sm">Feeling / Activity</p>
+          <EmojiHappyIcon className="h-8 text-gray-500" />
+          <p className="hidden md:inline-flex text-xs sm:text-sm">
+            Feeling / Activity
+          </p>
         </div>
       </div>
     </section>
