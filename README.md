@@ -2,4 +2,4 @@
 
 Fadhbook is Facebook clone created using Next JS, Firebase and Next Auth
 
-Deployed version : fadhbook.vercel.app
+Test the website yourself and kindly post something at https://fadhbook.vercel.app
