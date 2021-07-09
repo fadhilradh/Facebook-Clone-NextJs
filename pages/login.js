@@ -34,9 +34,9 @@ function Login() {
                 <button
                     disabled
                     className="w-5/6 rounded-md px-6 py-3 bg-[#42B72B] hover:bg-[#369323] text-white 
-        font-semibold text-xl h-15 focus:outline-none transition duration-150 ease-in transform active:scale-95 "
+        font-semibold text-lg h-15 focus:outline-none transition duration-150 ease-in transform active:scale-95 "
                 >
-                    Sign In Without Account (Under Development)
+                    Log In Without Account | (Under Development)
                 </button>
             </div>
         </section>
