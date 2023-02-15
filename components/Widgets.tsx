@@ -3,22 +3,18 @@ import { DotsHorizontalIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import Contact from "./Contact";
 
 const contacts = [
-  {
-    name: "Elon Musk",
-    src: "https://links.papareact.com/kxk",
-  },
-  {
-    name: "Jeff Bezos",
-    src: "https://links.papareact.com/f0p",
-  },
-  {
-    name: "Mark Zuckerberg",
-    src: "https://links.papareact.com/snf",
-  },
-  {
-    name: "Bill Gates",
-    src: "https://links.papareact.com/zvy",
-  },
+  // {
+  //   name: "Elon Musk",
+  //   src: "https://links.papareact.com/kxk",
+  // },
+  // {
+  //   name: "Mark Zuckerberg",
+  //   src: "https://links.papareact.com/snf",
+  // },
+  // {
+  //   name: "Bill Gates",
+  //   src: "https://links.papareact.com/zvy",
+  // },
 ];
 
 function Widgets() {
